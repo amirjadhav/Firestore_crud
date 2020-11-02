@@ -61,18 +61,21 @@ class _HomePageState extends State<HomePage> {
       return StreamBuilder(
         stream: notes,
         builder: (context, snapshot) {
+          if (snapshot.data == null) return CircularProgressIndicator();
           return ListView.separated(
             separatorBuilder: (BuildContext context, int index) => Divider(),
             itemCount: snapshot.data.docs.length,
             //padding: EdgeInsets.all(5.0),
             itemBuilder: (context, i) {
               return ListTile(
+                trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      model.deleteData(snapshot.data.docs[i].documentID);
+                    }),
                 onTap: () {
                   updateDialog(context, model, "Update a Note",
                       snapshot.data.docs[i].documentID);
-                },
-                onLongPress: () {
-                  model.deleteData(snapshot.data.docs[i].documentID);
                 },
                 title: Text(
                   snapshot.data.docs[i].data()['title'],

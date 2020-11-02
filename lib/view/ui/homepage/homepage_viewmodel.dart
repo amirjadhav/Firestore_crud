@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_crud/entity/note.dart';
+import 'package:firestore_crud/services/login_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -10,10 +11,6 @@ import 'package:stacked/stacked.dart';
 class HomePageViewModel extends BaseViewModel {
   Note note;
   Map<String, dynamic> details = new Map();
-
-  bool isLoggedIn() {
-    return FirebaseAuth.instance.currentUser != null ? true : false;
-  }
 
   Future<void> addData(String title, String desc) async {
     print('Add data called');

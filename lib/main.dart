@@ -18,17 +18,20 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         builder: ExtendedNavigator.builder(
-            router: approute.Router(),
-            initialRoute: approute.Routes.loginView,
-            //observers:
-            navigatorKey: locator<NavigationService>().navigatorKey,
-            onUnknownRoute: (RouteSettings settings) {
-              return MaterialPageRoute<void>(
-                settings: settings,
-                builder: (BuildContext context) =>
-                    Scaffold(body: Center(child: Text('Not Found'))),
-              );
-            }),
+          router: approute.Router(),
+          initialRoute: approute.Routes.loginView,
+
+          // initialRoute: approute.Routes.loginView,
+          //observers:
+          navigatorKey: locator<NavigationService>().navigatorKey,
+          onUnknownRoute: (RouteSettings settings) {
+            return MaterialPageRoute<void>(
+              settings: settings,
+              builder: (BuildContext context) =>
+                  Scaffold(body: Center(child: Text('Not Found'))),
+            );
+          },
+        ),
       ),
     );
   }
